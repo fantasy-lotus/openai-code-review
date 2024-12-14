@@ -28,7 +28,7 @@ jobs:
         run: mvn clean install
 
       - name: Copy openai-code-review-sdk JAR
-        run: cp target/openai-code-review-sdk-1.0.jar ./libs/
+        run: mvn dependency:copy -Dartifact=com.lotusluna:openai-code-review-sdk:1.0 -DoutputDirectory=./libs
 
       - name: Run Code Review
         run: java -jar ./libs/openai-code-review-sdk-1.0.jar
