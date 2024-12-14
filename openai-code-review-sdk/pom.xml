@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.lotus</groupId>
         <artifactId>openai-code-review</artifactId>
-        <version>1.0/version>
+        <version>1.0</version>
     </parent>
 
     <packaging>jar</packaging><!-- 打包方式 -->
