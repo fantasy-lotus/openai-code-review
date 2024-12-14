@@ -27,5 +27,5 @@ jobs:
       - name: Run Java code
         run: |
           cd openai-code-review-sdk/src/main/java
-          javac com.lotusluna.ApiTest.java
+          javac com/lotusluna/ApiTest.java
           java com.lotusluna.ApiTest
