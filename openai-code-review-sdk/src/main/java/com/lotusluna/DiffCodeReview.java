@@ -64,9 +64,7 @@ public class DiffCodeReview {
             byte[] input = JSONUtil.toJsonStr(request).getBytes(StandardCharsets.UTF_8);
             os.write(input);
         }
-
-        int responseCode = connection.getResponseCode();
-        System.out.println(responseCode);
+        System.out.println("test");
 
         BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
         String inputLine;
