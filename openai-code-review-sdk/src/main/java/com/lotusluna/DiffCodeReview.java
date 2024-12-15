@@ -51,13 +51,13 @@ public class DiffCodeReview {
         connection.setDoOutput(true);
 
         QwenRequest request = new QwenRequest();
-        request.setModel("deepseek-ai/DeepSeek-V2.5");
+        request.setModel("Pro/Qwen/Qwen2.5-Coder-7B-Instruct");
         request.setMessages(new ArrayList<Prompt>() {
             private static final long serialVersionUID = -7988151926241837899L;
 
             {
                 add(new Prompt("user", "这是"));
-                add(new Prompt("user", "你是一个高级编程架构师，精通各类场景方案、架构设计和编程语言，请您根据git diff记录，对代码做出评审。代码如下:"));
+                add(new Prompt("user", "你是一个高级编程架构师，精通各类场景方案、架构设计和编程语言，请您根据git diff记录，对代码做出评审, 并给出建议。代码如下:"));
                 add(new Prompt("user", diffCode));
             }
         });
