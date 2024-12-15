@@ -24,6 +24,11 @@
             <artifactId>hutool-json</artifactId>
             <version>5.8.28</version>
         </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-core</artifactId>
+            <version>5.8.28</version>
+        </dependency>
     </dependencies>
     <build>
         <resources>
@@ -77,6 +82,7 @@
                             <include>org.slf4j:slf4j-api</include>
                             <include>org.slf4j:slf4j-simple</include>
                             <include>cn.hutool:hutool-json</include>
+                            <include>cn.hutool:hutool-core</include>
                         </includes>
                     </artifactSet>
                 </configuration>
