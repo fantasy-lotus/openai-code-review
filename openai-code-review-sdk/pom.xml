@@ -75,7 +75,7 @@
                         <includes>
                             <include>org.slf4j:slf4j-api:jar:</include>
                             <include>org.slf4j:slf4j-simple:jar:</include>
-                            <include>cn.hutool:hutool-all:jar</include>
+                            <include>cn.hutool:hutool-json:jar</include>
                         </includes>
                     </artifactSet>
                 </configuration>
