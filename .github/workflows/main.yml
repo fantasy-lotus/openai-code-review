@@ -30,8 +30,5 @@ jobs:
       - name: Copy openai-code-review-sdk JAR
         run: mvn dependency:copy -Dartifact=com.lotusluna:openai-code-review-sdk:1.0 -DoutputDirectory=./libs
 
-      - name: test
-        run: ls -l ./libs
-
       - name: Run Code Review
         run: java -jar ./libs/openai-code-review-sdk-1.0.jar
