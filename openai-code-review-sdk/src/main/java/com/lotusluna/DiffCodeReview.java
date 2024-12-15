@@ -4,6 +4,7 @@ import cn.hutool.json.JSONUtil;
 import com.lotusluna.model.QwenRequest;
 import com.lotusluna.model.QwenResponse;
 import com.lotusluna.model.Prompt;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -14,6 +15,7 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
+@Slf4j
 public class DiffCodeReview {
     private static final String TOKEN = "sk-yqzobraqqlhwoilrnvckajfjkobwnauasdazieturopcvsez";
     public static void main(String[] args) throws Exception {
@@ -37,8 +39,8 @@ public class DiffCodeReview {
         }
 
         // 2. meta llama 代码评审
-        String log = codeReview(diffCode.toString());
-        System.out.println("code review：" + log);
+        String info = codeReview(diffCode.toString());
+        log.info("code review：" + info);
     }
 
     private static String codeReview(String diffCode) throws Exception {
@@ -63,9 +65,9 @@ public class DiffCodeReview {
         try (OutputStream os = connection.getOutputStream()) {
             byte[] input = JSONUtil.toJsonStr(request).getBytes(StandardCharsets.UTF_8);
             os.write(input);
+        }catch(Exception e){
+            log.error("error", e);
         }
-        System.out.println("test");
-
         BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
         String inputLine;
 
