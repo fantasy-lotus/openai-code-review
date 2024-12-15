@@ -40,7 +40,7 @@ public class DiffCodeReview {
 
         // 2. meta llama 代码评审
         String info = codeReview(diffCode.toString());
-        log.info("code review：" + info);
+        System.out.println(info);
     }
 
     private static String codeReview(String diffCode) throws Exception {
