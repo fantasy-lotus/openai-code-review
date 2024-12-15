@@ -20,11 +20,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.12</version>
-        </dependency>
-        <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
             <version>5.8.21</version>
@@ -80,7 +75,7 @@
                         <includes>
                             <include>org.slf4j:slf4j-api:jar:</include>
                             <include>org.slf4j:slf4j-simple:jar:</include>
-                            <include>cn.hutool.hutool-all:jar</include>
+                            <include>cn.hutool:hutool-all:jar</include>
                         </includes>
                     </artifactSet>
                 </configuration>
