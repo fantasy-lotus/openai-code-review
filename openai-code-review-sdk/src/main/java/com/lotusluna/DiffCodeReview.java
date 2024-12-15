@@ -1,8 +1,8 @@
 package com.lotusluna;
 
 import cn.hutool.json.JSONUtil;
-import com.lotusluna.model.LlamaRequest;
-import com.lotusluna.model.LlamaResponse;
+import com.lotusluna.model.QwenRequest;
+import com.lotusluna.model.QwenResponse;
 import com.lotusluna.model.Prompt;
 
 import java.io.BufferedReader;
@@ -10,7 +10,6 @@ import java.io.File;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
-import java.net.ProtocolException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -51,12 +50,13 @@ public class DiffCodeReview {
         connection.setRequestProperty("Content-Type", "application/json");
         connection.setDoOutput(true);
 
-        LlamaRequest request = new LlamaRequest();
-        request.setModel("meta-llama/Meta-Llama-3.1-8B-Instruct");
+        QwenRequest request = new QwenRequest();
+        request.setModel("deepseek-ai/DeepSeek-V2.5");
         request.setMessages(new ArrayList<Prompt>() {
             private static final long serialVersionUID = -7988151926241837899L;
 
             {
+                add(new Prompt("user", "这是"));
                 add(new Prompt("user", "你是一个高级编程架构师，精通各类场景方案、架构设计和编程语言，请您根据git diff记录，对代码做出评审。代码如下:"));
                 add(new Prompt("user", diffCode));
             }
@@ -80,7 +80,7 @@ public class DiffCodeReview {
 
         in.close();
         connection.disconnect();
-        LlamaResponse response = JSONUtil.toBean(content.toString(), LlamaResponse.class);
+        QwenResponse response = JSONUtil.toBean(content.toString(), QwenResponse.class);
         return response.getChoices().get(0).getMessage().getContent();
     }
 
