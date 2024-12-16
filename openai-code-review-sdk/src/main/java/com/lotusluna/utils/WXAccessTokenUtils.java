@@ -11,8 +11,8 @@ import java.net.URL;
 @Slf4j
 public class WXAccessTokenUtils {
 
-    private static final String APPID = "wx5a228ff69e28a91f";
-    private static final String SECRET = "0bea03aa1310bac050aae79dd8703928";
+    private static final String APPID = "wx891ae4967424a1b9";
+    private static final String SECRET = "ae9c6cdb878b0f9e3f4f9a12d1c3e4de";
     private static final String GRANT_TYPE = "client_credential";
     private static final String URL_TEMPLATE = "https://api.weixin.qq.com/cgi-bin/token?grant_type=%s&appid=%s&secret=%s";
 
