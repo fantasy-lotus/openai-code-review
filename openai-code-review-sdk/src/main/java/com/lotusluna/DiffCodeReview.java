@@ -60,7 +60,7 @@ public class DiffCodeReview {
         log.info("push message success");
     }
 
-    private static void pushMessage(String logUrl) throws Exception {
+    private static void pushMessage(String logUrl) {
         String accessToken = WXAccessTokenUtils.getAccessToken();
         System.out.println(accessToken);
 
@@ -73,7 +73,7 @@ public class DiffCodeReview {
         sendPostRequest(url, JSONUtil.toJsonStr(message));
     }
 
-    private static String sendPostRequest(String urlString, String jsonBody){
+    private static void sendPostRequest(String urlString, String jsonBody) {
         try {
             URL url = new URL(urlString);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -83,29 +83,28 @@ public class DiffCodeReview {
             conn.setDoOutput(true);
 
             try (OutputStream os = conn.getOutputStream()) {
-                byte[] input = JSONUtil.toJsonStr(jsonBody).getBytes(StandardCharsets.UTF_8);
-                os.write(input);
-            } catch (Exception e) {
-                log.error("error", e);
-            }
-            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            String inputLine;
-
-            StringBuilder content = new StringBuilder();
-            while ((inputLine = in.readLine()) != null) {
-                content.append(inputLine);
+                byte[] input = jsonBody.getBytes(StandardCharsets.UTF_8);
+                os.write(input, 0, input.length);
             }
 
-            in.close();
-            conn.disconnect();
-            return content.toString();
-        }catch (Exception e){
-            log.error("error", e);
-            return null;
+            try (Scanner scanner = new Scanner(conn.getInputStream(), StandardCharsets.UTF_8.name())) {
+                String response = scanner.useDelimiter("\\A").next();
+                System.out.println(response);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
-    private static String codeReview(String diffCode){
-        String url = "https://api.siliconflow.cn/v1/chat/completions";
+
+    private static String codeReview(String diffCode) throws Exception {
+        URL url = new URL("https://api.siliconflow.cn/v1/chat/completions");
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+        connection.setRequestMethod("POST");
+        connection.setRequestProperty("Authorization", "Bearer " + TOKEN);
+        connection.setRequestProperty("Content-Type", "application/json");
+        connection.setDoOutput(true);
+
         QwenRequest request = new QwenRequest();
         request.setModel("Pro/Qwen/Qwen2.5-Coder-7B-Instruct");
         request.setMessages(new ArrayList<Prompt>() {
@@ -115,11 +114,26 @@ public class DiffCodeReview {
                 add(new Prompt("user", diffCode));
             }
         });
-        String content = sendPostRequest(url, JSONUtil.toJsonStr(request));
-        QwenResponse response = JSONUtil.toBean(content, QwenResponse.class);
+
+        try (OutputStream os = connection.getOutputStream()) {
+            byte[] input = JSONUtil.toJsonStr(request).getBytes(StandardCharsets.UTF_8);
+            os.write(input);
+        }catch(Exception e){
+            log.error("error", e);
+        }
+        BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+        String inputLine;
+
+        StringBuilder content = new StringBuilder();
+        while ((inputLine = in.readLine()) != null) {
+            content.append(inputLine);
+        }
+
+        in.close();
+        connection.disconnect();
+        QwenResponse response = JSONUtil.toBean(content.toString(), QwenResponse.class);
         return response.getChoices().get(0).getMessage().getContent();
     }
-
     private static String writeLog(String token, String log) throws Exception {
         Git git = Git.cloneRepository()
                 .setURI("https://github.com/fantasy-lotus/code-review-log.git")

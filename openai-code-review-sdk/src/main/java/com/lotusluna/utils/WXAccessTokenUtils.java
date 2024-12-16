@@ -53,7 +53,7 @@ public class WXAccessTokenUtils {
         }
     }
     @Data
-    private static class Token {
+    public static class Token {
         private String access_token;
         private Integer expires_in;
     }
