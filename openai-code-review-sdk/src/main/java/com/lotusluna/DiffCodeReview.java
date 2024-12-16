@@ -140,7 +140,6 @@ public class DiffCodeReview {
                 .setDirectory(new File("repo"))
                 .setCredentialsProvider(new UsernamePasswordCredentialsProvider(token, ""))
                 .call();
-
         String dateFolderName = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
         File dateFolder = new File("repo/" + dateFolderName);
         if (!dateFolder.exists()) {
