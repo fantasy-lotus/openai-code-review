@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
+import org.eclipse.jgit.util.StringUtils;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -89,7 +90,9 @@ public class DiffCodeReview {
 
             try (Scanner scanner = new Scanner(conn.getInputStream(), StandardCharsets.UTF_8.name())) {
                 String response = scanner.useDelimiter("\\A").next();
-                System.out.println(response);
+                if(StringUtils.isEmptyOrNull(response)) {
+                    log.error("response is empty");
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
