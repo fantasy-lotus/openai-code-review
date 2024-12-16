@@ -2,6 +2,7 @@ package com.lotusluna.utils;
 
 
 import cn.hutool.json.JSONUtil;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.BufferedReader;
@@ -51,26 +52,10 @@ public class WXAccessTokenUtils {
             return null;
         }
     }
-
+    @Data
     public static class Token {
         private String access_token;
         private Integer expires_in;
-
-        public String getAccess_token() {
-            return access_token;
-        }
-
-        public void setAccess_token(String access_token) {
-            this.access_token = access_token;
-        }
-
-        public Integer getExpires_in() {
-            return expires_in;
-        }
-
-        public void setExpires_in(Integer expires_in) {
-            this.expires_in = expires_in;
-        }
     }
 
 
