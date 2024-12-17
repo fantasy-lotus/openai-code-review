@@ -44,7 +44,7 @@ public class DiffCodeReview {
         if(info == null || info.isEmpty()){
             throw new RuntimeException("code review failed");
         }
-        System.out.println("code review success:/n"+info);
+        System.out.println(info);
     }
 
     private static String codeReview(String diffCode) throws Exception {

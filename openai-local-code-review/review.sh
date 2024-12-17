@@ -18,7 +18,7 @@ fi
 REVIEW=$(echo "$DIFF_CONTENT" | java -Dfile.encoding=UTF-8 -jar ./target/openai-local-code-review-1.0.jar)
 
 # 保存审查结果
-echo "Code Review Results:" > "$OUTPUT_FILE"
+echo -e "Code Review Results:\n" > "$OUTPUT_FILE"
 echo "$REVIEW" >> "$OUTPUT_FILE"
 echo "Review results saved to $OUTPUT_FILE"
 
