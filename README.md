@@ -1,4 +1,4 @@
-借助Github Actions和llm大模型自动化评审修改代码  
+借助Git Diff和LLM大模型自动化评审修改代码  
 model: Pro/Qwen/Qwen2.5-Coder-7B-Instruct
 
 ## 接入项目使用教程:
