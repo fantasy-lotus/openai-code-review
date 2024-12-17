@@ -1,4 +1,4 @@
-借助Github Actions和llm大模型自动化评审修改代码
+借助Github Actions和llm大模型自动化评审修改代码  
 model: Pro/Qwen/Qwen2.5-Coder-7B-Instruct
 
 ## 接入项目使用教程:
@@ -27,4 +27,5 @@ curl -LJO https://ghproxy.cn/https://github.com/fantasy-lotus/openai-code-review
 rm "$0"
 ```
 3. 粘贴到项目根目录下执行
-4. 代码修改后, 在进行Git Add操作之前, 执行下载的review.sh进行代码审查, 审查结果会以markdown格式保存在review_results目录下, 以日期为文件夹名, 以时间为文件名
+4. 代码修改后, 在进行Git Add操作之前, 执行下载的review.sh进行代码审查
+5. 审查结果会以markdown格式保存在review_results目录下, 以日期为文件夹名, 以时间为文件名
