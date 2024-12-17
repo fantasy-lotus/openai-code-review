@@ -1,7 +1,7 @@
 借助Github Actions和llm大模型自动化评审提交代码
 model: Pro/Qwen/Qwen2.5-Coder-7B-Instruct
 
-初始化执行文件
+初始化执行文件, 复制到项目根目录下执行
 ```shell
 # 使用提示:
 # 代码修改后, 在进行Git Add操作之前, 执行review.sh进行代码审查, 审查结果会保存在review_results目录下, 以日期为文件夹名, 以时间为文件名
