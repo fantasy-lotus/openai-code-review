@@ -1,30 +1,21 @@
 package com.lotusluna.review;
 
 import cn.hutool.json.JSONUtil;
-
 import com.lotusluna.review.model.Prompt;
 import com.lotusluna.review.model.QwenRequest;
 import com.lotusluna.review.model.QwenResponse;
-import lombok.extern.slf4j.Slf4j;
-import org.eclipse.jgit.api.Git;
-import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Random;
-import java.util.Scanner;
 
-@Slf4j
 public class DiffCodeReview {
     private static final String TOKEN = "sk-yqzobraqqlhwoilrnvckajfjkobwnauasdazieturopcvsez";
     public static void main(String[] args) throws Exception {
         // 1. 读取检出代码
-        ProcessBuilder processBuilder = new ProcessBuilder("ls");
+        ProcessBuilder processBuilder = new ProcessBuilder("git","diff","--unified=0");
         Process process = processBuilder.start();
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -70,7 +61,7 @@ public class DiffCodeReview {
             byte[] input = JSONUtil.toJsonStr(request).getBytes(StandardCharsets.UTF_8);
             os.write(input);
         }catch(Exception e){
-            log.error("error", e);
+            throw new RuntimeException("code review failed");
         }
         BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
         String inputLine;

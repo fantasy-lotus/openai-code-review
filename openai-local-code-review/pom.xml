@@ -22,11 +22,6 @@
             <artifactId>hutool-all</artifactId>
             <version>5.8.28</version>
         </dependency>
-        <dependency>
-            <groupId>org.eclipse.jgit</groupId>
-            <artifactId>org.eclipse.jgit</artifactId>
-            <version>5.13.0.202109080827-r</version>
-        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -59,10 +54,7 @@
                     <createDependencyReducedPom>false</createDependencyReducedPom>
                     <artifactSet>
                         <includes>
-                            <include>org.slf4j:slf4j-api</include>
-                            <include>org.slf4j:slf4j-simple</include>
                             <include>cn.hutool:hutool-all</include>
-                            <include>org.eclipse.jgit:org.eclipse.jgit</include>
                         </includes>
                     </artifactSet>
                 </configuration>
