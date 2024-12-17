@@ -10,6 +10,7 @@
     <packaging>pom</packaging><!-- 打包方式 -->
     <modules>
         <module>openai-code-review-sdk</module>
+        <module>openai-local-code-review</module>
     </modules>
 
     <parent>

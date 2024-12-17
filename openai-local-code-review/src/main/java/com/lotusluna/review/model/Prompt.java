@@ -1,4 +1,4 @@
-package com.lotusluna.model;
+package com.lotusluna.review.model;
 
 import lombok.Data;
 import lombok.NonNull;
