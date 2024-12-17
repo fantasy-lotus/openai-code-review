@@ -37,5 +37,5 @@ build/
 ### Mac OS ###
 .DS_Store
 .idea/
-openai-code_review/
+openai-code-review/
 review.sh
