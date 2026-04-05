@@ -5,8 +5,13 @@ import lombok.NonNull;
 
 @Data
 public class Prompt {
-    @NonNull
     private String role;
-    @NonNull
     private String content;
+
+    public Prompt() {}
+
+    public Prompt(@NonNull String role, @NonNull String content) {
+        this.role = role;
+        this.content = content;
+    }
 }

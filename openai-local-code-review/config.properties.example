@@ -1,0 +1,4 @@
+provider=siliconflow
+siliconflow.model=Pro/Qwen/Qwen2.5-Coder-7B-Instruct
+anthropic.model=claude-3-5-sonnet-20241022
+anthropic.max_tokens=1024
