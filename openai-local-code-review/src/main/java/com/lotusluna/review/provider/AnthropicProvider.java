@@ -43,7 +43,7 @@ public class AnthropicProvider implements LLMProvider {
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
         connection.setRequestMethod("POST");
-        connection.setRequestProperty("x-api-key", "Bearer " + apiKey);
+        connection.setRequestProperty("x-api-key", apiKey);
         connection.setRequestProperty("Content-Type", "application/json");
         connection.setRequestProperty("anthropic-version", "2023-06-01");
         connection.setDoOutput(true);
